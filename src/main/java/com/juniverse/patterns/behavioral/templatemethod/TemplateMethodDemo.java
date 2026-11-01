@@ -1,9 +1,14 @@
 package com.juniverse.patterns.behavioral.templatemethod;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Template Method: la clase base fija el esqueleto de un algoritmo y las subclases personalizan algunos pasos.
  */
 public final class TemplateMethodDemo {
+    private static final Logger LOGGER = AppLogger.get(TemplateMethodDemo.class);
+
 
     private TemplateMethodDemo() {
     }
@@ -53,7 +58,7 @@ public final class TemplateMethodDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        System.out.println(new SalesReport().generate());
-        System.out.println(new InventoryReport().generate());
+        LOGGER.info(new SalesReport().generate());
+        LOGGER.info(new InventoryReport().generate());
     }
 }

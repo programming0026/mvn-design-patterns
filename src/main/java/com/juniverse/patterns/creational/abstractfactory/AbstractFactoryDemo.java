@@ -1,9 +1,14 @@
 package com.juniverse.patterns.creational.abstractfactory;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Abstract Factory: crea familias de objetos relacionados sin especificar sus clases concretas.
  */
 public final class AbstractFactoryDemo {
+    private static final Logger LOGGER = AppLogger.get(AbstractFactoryDemo.class);
+
 
     private AbstractFactoryDemo() {
     }
@@ -72,7 +77,7 @@ public final class AbstractFactoryDemo {
     }
 
     private static void paint(GuiFactory factory) {
-        System.out.println(factory.createButton().render() + " " + factory.createCheckbox().render());
+        LOGGER.info(factory.createButton().render() + " " + factory.createCheckbox().render());
     }
 
     /** Ejecuta la demostración. */

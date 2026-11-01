@@ -1,9 +1,14 @@
 package com.juniverse.patterns.behavioral.state;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * State: un objeto cambia su comportamiento cuando cambia su estado interno (aquí, un semáforo).
  */
 public final class StateDemo {
+    private static final Logger LOGGER = AppLogger.get(StateDemo.class);
+
 
     private StateDemo() {
     }
@@ -87,7 +92,7 @@ public final class StateDemo {
     public static void run() {
         TrafficLight light = new TrafficLight();
         for (int i = 0; i < 4; i++) {
-            System.out.println(light.signal());
+            LOGGER.info(light.signal());
             light.change();
         }
     }

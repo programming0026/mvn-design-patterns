@@ -1,9 +1,14 @@
 package com.juniverse.patterns.behavioral.chainofresponsibility;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Chain of Responsibility: la petición pasa por una cadena de manejadores hasta que uno la atiende.
  */
 public final class ChainOfResponsibilityDemo {
+    private static final Logger LOGGER = AppLogger.get(ChainOfResponsibilityDemo.class);
+
 
     private ChainOfResponsibilityDemo() {
     }
@@ -82,10 +87,10 @@ public final class ChainOfResponsibilityDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        Approver cadena = new Supervisor();
-        cadena.then(new Manager()).then(new Director());
-        for (double monto : new double[]{500, 7_500, 50_000, 250_000}) {
-            System.out.println(cadena.approve(monto));
+        Approver chain = new Supervisor();
+        chain.then(new Manager()).then(new Director());
+        for (double amount : new double[]{500, 7_500, 50_000, 250_000}) {
+            LOGGER.info(chain.approve(amount));
         }
     }
 }

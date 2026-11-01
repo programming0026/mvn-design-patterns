@@ -3,10 +3,14 @@ package com.juniverse.patterns.creational.prototype;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Prototype: crea nuevos objetos copiando uno existente, sin depender de su clase concreta.
  */
 public final class PrototypeDemo {
+    private static final Logger LOGGER = AppLogger.get(PrototypeDemo.class);
+
 
     private PrototypeDemo() {
     }
@@ -53,10 +57,10 @@ public final class PrototypeDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        Document plantilla = new Document("Informe", List.of("Introducción", "Conclusiones"));
-        Document copia = plantilla.copy();
-        copia.addSection("Anexo");
-        System.out.println("Plantilla: " + plantilla);
-        System.out.println("Copia:     " + copia);
+        Document template = new Document("Informe", List.of("Introducción", "Conclusiones"));
+        Document copy = template.copy();
+        copy.addSection("Anexo");
+        LOGGER.info("Plantilla: " + template);
+        LOGGER.info("Copia:     " + copy);
     }
 }

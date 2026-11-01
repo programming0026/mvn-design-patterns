@@ -2,10 +2,14 @@ package com.juniverse.patterns.behavioral.strategy;
 
 import java.util.List;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Strategy: define una familia de algoritmos intercambiables en tiempo de ejecución.
  */
 public final class StrategyDemo {
+    private static final Logger LOGGER = AppLogger.get(StrategyDemo.class);
+
 
     private StrategyDemo() {
     }
@@ -49,8 +53,8 @@ public final class StrategyDemo {
     /** Ejecuta la demostración. */
     public static void run() {
         Cart cart = new Cart(List.of(200.0, 350.0, 450.0));
-        System.out.printf("Sin descuento: $%.2f%n", cart.total(t -> t));
-        System.out.printf("10%% de descuento: $%.2f%n", cart.total(t -> t * 0.90));
-        System.out.printf("$100 de descuento: $%.2f%n", cart.total(t -> t - 100));
+        LOGGER.info(String.format("Sin descuento: $%.2f", cart.total(t -> t)));
+        LOGGER.info(String.format("10%% de descuento: $%.2f", cart.total(t -> t * 0.90)));
+        LOGGER.info(String.format("$100 de descuento: $%.2f", cart.total(t -> t - 100)));
     }
 }

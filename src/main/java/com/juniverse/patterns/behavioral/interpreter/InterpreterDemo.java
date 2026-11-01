@@ -3,10 +3,14 @@ package com.juniverse.patterns.behavioral.interpreter;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Interpreter: define una gramática simple y un intérprete que evalúa sentencias (aquí, notación posfija: "3 4 + 2 *").
  */
 public final class InterpreterDemo {
+    private static final Logger LOGGER = AppLogger.get(InterpreterDemo.class);
+
 
     private InterpreterDemo() {
     }
@@ -71,7 +75,7 @@ public final class InterpreterDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        System.out.println("3 4 + 2 * = " + parse("3 4 + 2 *").interpret());
-        System.out.println("5 6 7 * + = " + parse("5 6 7 * +").interpret());
+        LOGGER.info("3 4 + 2 * = " + parse("3 4 + 2 *").interpret());
+        LOGGER.info("5 6 7 * + = " + parse("5 6 7 * +").interpret());
     }
 }

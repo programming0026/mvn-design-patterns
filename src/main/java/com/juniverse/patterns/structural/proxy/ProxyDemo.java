@@ -1,9 +1,14 @@
 package com.juniverse.patterns.structural.proxy;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Proxy: un sustituto controla el acceso a otro objeto (aquí: carga perezosa y caché de una imagen costosa).
  */
 public final class ProxyDemo {
+    private static final Logger LOGGER = AppLogger.get(ProxyDemo.class);
+
 
     private ProxyDemo() {
     }
@@ -29,7 +34,7 @@ public final class ProxyDemo {
          */
         public RealImage(String file) {
             this.file = file;
-            System.out.println("  (cargando " + file + " del disco...)");
+            LOGGER.info("  (cargando " + file + " del disco...)");
         }
 
         @Override
@@ -63,9 +68,9 @@ public final class ProxyDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        Image foto = new ImageProxy("vacaciones.png");
-        System.out.println("Proxy creado (aún no se cargó nada)");
-        System.out.println(foto.display());
-        System.out.println(foto.display());
+        Image photo = new ImageProxy("vacaciones.png");
+        LOGGER.info("Proxy creado (aún no se cargó nada)");
+        LOGGER.info(photo.display());
+        LOGGER.info(photo.display());
     }
 }

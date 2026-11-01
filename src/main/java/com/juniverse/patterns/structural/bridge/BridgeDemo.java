@@ -1,9 +1,14 @@
 package com.juniverse.patterns.structural.bridge;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Bridge: separa una abstracción de su implementación para que ambas varíen de forma independiente.
  */
 public final class BridgeDemo {
+    private static final Logger LOGGER = AppLogger.get(BridgeDemo.class);
+
 
     private BridgeDemo() {
     }
@@ -82,7 +87,7 @@ public final class BridgeDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        System.out.println(new RemoteControl(new Tv()).toggle(true));
-        System.out.println(new AdvancedRemote(new Radio()).mute());
+        LOGGER.info(new RemoteControl(new Tv()).toggle(true));
+        LOGGER.info(new AdvancedRemote(new Radio()).mute());
     }
 }

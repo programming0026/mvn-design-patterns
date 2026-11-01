@@ -3,10 +3,14 @@ package com.juniverse.patterns.behavioral.memento;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Memento: guarda y restaura el estado anterior de un objeto sin romper su encapsulamiento.
  */
 public final class MementoDemo {
+    private static final Logger LOGGER = AppLogger.get(MementoDemo.class);
+
 
     private MementoDemo() {
     }
@@ -65,8 +69,8 @@ public final class MementoDemo {
         doc.write("versión 2");
         history.push(doc.save());
         doc.write("versión 3 (con errores)");
-        System.out.println("Actual: " + doc.content());
+        LOGGER.info("Actual: " + doc.content());
         doc.restore(history.pop());
-        System.out.println("Restaurado: " + doc.content());
+        LOGGER.info("Restaurado: " + doc.content());
     }
 }

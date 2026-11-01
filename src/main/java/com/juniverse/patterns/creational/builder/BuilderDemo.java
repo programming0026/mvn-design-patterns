@@ -1,9 +1,14 @@
 package com.juniverse.patterns.creational.builder;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Builder: construye objetos complejos paso a paso; el resultado es inmutable.
  */
 public final class BuilderDemo {
+    private static final Logger LOGGER = AppLogger.get(BuilderDemo.class);
+
 
     private BuilderDemo() {
     }
@@ -86,7 +91,7 @@ public final class BuilderDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        System.out.println(new Pizza.Builder("grande").cheese().pepperoni().build());
-        System.out.println(new Pizza.Builder("mediana").mushrooms().build());
+        LOGGER.info(String.valueOf(new Pizza.Builder("grande").cheese().pepperoni().build()));
+        LOGGER.info(String.valueOf(new Pizza.Builder("mediana").mushrooms().build()));
     }
 }

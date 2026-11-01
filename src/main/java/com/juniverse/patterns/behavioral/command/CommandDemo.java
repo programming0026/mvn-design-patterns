@@ -3,10 +3,14 @@ package com.juniverse.patterns.behavioral.command;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Command: convierte una acción en un objeto, lo que permite deshacerla, encolarla o registrarla.
  */
 public final class CommandDemo {
+    private static final Logger LOGGER = AppLogger.get(CommandDemo.class);
+
 
     private CommandDemo() {
     }
@@ -89,8 +93,8 @@ public final class CommandDemo {
         History history = new History();
         history.run(new TypeCommand(editor, "Hola"));
         history.run(new TypeCommand(editor, ", mundo"));
-        System.out.println("Texto: " + editor.text());
+        LOGGER.info("Texto: " + editor.text());
         history.undo();
-        System.out.println("Tras deshacer: " + editor.text());
+        LOGGER.info("Tras deshacer: " + editor.text());
     }
 }

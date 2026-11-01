@@ -24,21 +24,24 @@ import com.juniverse.patterns.behavioral.strategy.StrategyDemo;
 import com.juniverse.patterns.behavioral.templatemethod.TemplateMethodDemo;
 import com.juniverse.patterns.behavioral.visitor.VisitorDemo;
 
+import java.util.logging.Logger;
 /**
  * Ejecuta un ejemplo de cada uno de los 23 patrones de diseño del GoF, organizados en tres grupos:
  * creacionales, estructurales y de comportamiento.
  */
 public final class Main {
+    private static final Logger LOGGER = AppLogger.get(Main.class);
+
 
     private Main() {
     }
 
     private static void section(String title) {
-        System.out.println("\n############ " + title.toUpperCase() + " ############");
+        LOGGER.info("\n############ " + title.toUpperCase() + " ############");
     }
 
     private static void demo(String name, Runnable demo) {
-        System.out.println("\n--- " + name + " ---");
+        LOGGER.info("\n--- " + name + " ---");
         demo.run();
     }
 

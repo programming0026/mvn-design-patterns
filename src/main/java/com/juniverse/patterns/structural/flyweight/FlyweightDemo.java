@@ -3,10 +3,14 @@ package com.juniverse.patterns.structural.flyweight;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Flyweight: comparte objetos inmutables para ahorrar memoria cuando hay muchísimos elementos parecidos.
  */
 public final class FlyweightDemo {
+    private static final Logger LOGGER = AppLogger.get(FlyweightDemo.class);
+
 
     private FlyweightDemo() {
     }
@@ -47,10 +51,10 @@ public final class FlyweightDemo {
     /** Ejecuta la demostración. */
     public static void run() {
         TreeFactory factory = new TreeFactory();
-        Tree[] bosque = new Tree[1000];
-        for (int i = 0; i < bosque.length; i++) {
-            bosque[i] = new Tree(i, i * 2, i % 2 == 0 ? factory.get("Pino", "verde") : factory.get("Roble", "marrón"));
+        Tree[] forest = new Tree[1000];
+        for (int i = 0; i < forest.length; i++) {
+            forest[i] = new Tree(i, i * 2, i % 2 == 0 ? factory.get("Pino", "verde") : factory.get("Roble", "marrón"));
         }
-        System.out.println("Árboles: " + bosque.length + ", tipos en memoria: " + factory.createdTypes());
+        LOGGER.info("Árboles: " + forest.length + ", tipos en memoria: " + factory.createdTypes());
     }
 }

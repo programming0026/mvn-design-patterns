@@ -3,10 +3,14 @@ package com.juniverse.patterns.behavioral.iterator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Iterator: recorre los elementos de una colección sin exponer su estructura interna.
  */
 public final class IteratorDemo {
+    private static final Logger LOGGER = AppLogger.get(IteratorDemo.class);
+
 
     private IteratorDemo() {
     }
@@ -54,6 +58,6 @@ public final class IteratorDemo {
         for (int n : new Range(1, 6)) {
             sb.append(n).append(' ');
         }
-        System.out.println("Recorrido: " + sb.toString().trim());
+        LOGGER.info("Recorrido: " + sb.toString().trim());
     }
 }

@@ -2,10 +2,14 @@ package com.juniverse.patterns.behavioral.visitor;
 
 import java.util.List;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Visitor: añade operaciones nuevas a una jerarquía de clases sin modificarlas.
  */
 public final class VisitorDemo {
+    private static final Logger LOGGER = AppLogger.get(VisitorDemo.class);
+
 
     private VisitorDemo() {
     }
@@ -85,9 +89,9 @@ public final class VisitorDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        List<Shape> figuras = List.of(new Circle(2), new Rectangle(3, 4));
-        for (Shape s : figuras) {
-            System.out.printf("%s -> área %.2f%n", s.accept(new DescribeVisitor()), s.accept(new AreaVisitor()));
+        List<Shape> shapes = List.of(new Circle(2), new Rectangle(3, 4));
+        for (Shape s : shapes) {
+            LOGGER.info(String.format("%s -> área %.2f", s.accept(new DescribeVisitor()), s.accept(new AreaVisitor())));
         }
     }
 }

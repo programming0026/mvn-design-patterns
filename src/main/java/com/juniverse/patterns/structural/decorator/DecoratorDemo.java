@@ -1,9 +1,14 @@
 package com.juniverse.patterns.structural.decorator;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Decorator: añade responsabilidades a un objeto de forma dinámica envolviéndolo, sin usar herencia.
  */
 public final class DecoratorDemo {
+    private static final Logger LOGGER = AppLogger.get(DecoratorDemo.class);
+
 
     private DecoratorDemo() {
     }
@@ -99,6 +104,6 @@ public final class DecoratorDemo {
     /** Ejecuta la demostración. */
     public static void run() {
         Coffee pedido = new Sugar(new Milk(new SimpleCoffee()));
-        System.out.printf("%s = $%.2f%n", pedido.description(), pedido.cost());
+        LOGGER.info(String.format("%s = $%.2f", pedido.description(), pedido.cost()));
     }
 }

@@ -3,10 +3,14 @@ package com.juniverse.patterns.behavioral.mediator;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Mediator: los objetos no se comunican entre sí directamente sino a través de un mediador (aquí, una sala de chat).
  */
 public final class MediatorDemo {
+    private static final Logger LOGGER = AppLogger.get(MediatorDemo.class);
+
 
     private MediatorDemo() {
     }
@@ -62,16 +66,16 @@ public final class MediatorDemo {
         }
 
         void receive(String from, String message) {
-            System.out.println("  " + name + " recibe de " + from + ": " + message);
+            LOGGER.info("  " + name + " recibe de " + from + ": " + message);
         }
     }
 
     /** Ejecuta la demostración. */
     public static void run() {
-        ChatRoom sala = new ChatRoom();
-        User ana = new User("Ana", sala);
-        new User("Luis", sala);
-        new User("Eva", sala);
+        ChatRoom room = new ChatRoom();
+        User ana = new User("Ana", room);
+        new User("Luis", room);
+        new User("Eva", room);
         ana.say("¡Hola a todos!");
     }
 }

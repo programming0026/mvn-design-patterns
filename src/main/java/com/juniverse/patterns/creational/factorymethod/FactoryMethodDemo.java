@@ -1,9 +1,14 @@
 package com.juniverse.patterns.creational.factorymethod;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Factory Method: una clase base define un método de creación y las subclases deciden qué objeto concreto crean.
  */
 public final class FactoryMethodDemo {
+    private static final Logger LOGGER = AppLogger.get(FactoryMethodDemo.class);
+
 
     private FactoryMethodDemo() {
     }
@@ -71,7 +76,7 @@ public final class FactoryMethodDemo {
 
     /** Ejecuta la demostración. */
     public static void run() {
-        System.out.println(new RoadLogistics().planDelivery());
-        System.out.println(new SeaLogistics().planDelivery());
+        LOGGER.info(new RoadLogistics().planDelivery());
+        LOGGER.info(new SeaLogistics().planDelivery());
     }
 }

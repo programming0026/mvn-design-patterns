@@ -3,10 +3,14 @@ package com.juniverse.patterns.structural.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Composite: trata de la misma forma a objetos individuales y a grupos de objetos (estructura en árbol).
  */
 public final class CompositeDemo {
+    private static final Logger LOGGER = AppLogger.get(CompositeDemo.class);
+
 
     private CompositeDemo() {
     }
@@ -32,7 +36,7 @@ public final class CompositeDemo {
     public record FileItem(String name, int size) implements FileSystemItem {
         @Override
         public void print(String indent) {
-            System.out.println(indent + name + " (" + size + " KB)");
+            LOGGER.info(indent + name + " (" + size + " KB)");
         }
     }
 
@@ -68,16 +72,16 @@ public final class CompositeDemo {
 
         @Override
         public void print(String indent) {
-            System.out.println(indent + name + "/ (" + size() + " KB)");
+            LOGGER.info(indent + name + "/ (" + size() + " KB)");
             children.forEach(c -> c.print(indent + "  "));
         }
     }
 
     /** Ejecuta la demostración. */
     public static void run() {
-        Folder raiz = new Folder("proyecto")
+        Folder root = new Folder("proyecto")
                 .add(new FileItem("pom.xml", 4))
                 .add(new Folder("src").add(new FileItem("Main.java", 2)).add(new FileItem("App.java", 6)));
-        raiz.print("");
+        root.print("");
     }
 }

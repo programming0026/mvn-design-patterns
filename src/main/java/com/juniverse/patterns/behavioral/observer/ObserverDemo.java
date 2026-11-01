@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Observer: cuando un objeto cambia, notifica automáticamente a todos los que se suscribieron.
  */
 public final class ObserverDemo {
+    private static final Logger LOGGER = AppLogger.get(ObserverDemo.class);
+
 
     private ObserverDemo() {
     }
@@ -45,7 +49,7 @@ public final class ObserverDemo {
          */
         public void setPrice(double newPrice) {
             this.price = newPrice;
-            System.out.println(symbol + " cambió a $" + price);
+            LOGGER.info(symbol + " cambió a $" + price);
             observers.forEach(o -> o.accept(price));
         }
     }
@@ -53,10 +57,10 @@ public final class ObserverDemo {
     /** Ejecuta la demostración. */
     public static void run() {
         Stock acme = new Stock("ACME", 100);
-        acme.subscribe(p -> System.out.println("  Pantalla: precio actual " + p));
+        acme.subscribe(p -> LOGGER.info("  Pantalla: precio actual " + p));
         acme.subscribe(p -> {
             if (p < 90) {
-                System.out.println("  Alerta: ¡caída por debajo de 90!");
+                LOGGER.info("  Alerta: ¡caída por debajo de 90!");
             }
         });
         acme.setPrice(95);

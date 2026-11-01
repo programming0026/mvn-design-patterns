@@ -1,9 +1,14 @@
 package com.juniverse.patterns.structural.adapter;
 
+
+import java.util.logging.Logger;
+import com.juniverse.patterns.AppLogger;
 /**
  * Adapter: permite que una clase con una interfaz incompatible trabaje con el código que espera otra.
  */
 public final class AdapterDemo {
+    private static final Logger LOGGER = AppLogger.get(AdapterDemo.class);
+
 
     private AdapterDemo() {
     }
@@ -52,6 +57,6 @@ public final class AdapterDemo {
     /** Ejecuta la demostración. */
     public static void run() {
         CelsiusSensor sensor = new ThermometerAdapter(new FahrenheitThermometer());
-        System.out.printf("Temperatura: %.1f °C%n", sensor.readCelsius());
+        LOGGER.info(String.format("Temperatura: %.1f °C", sensor.readCelsius()));
     }
 }
